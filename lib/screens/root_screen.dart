@@ -23,7 +23,8 @@ class Body extends StatelessWidget {
           child: Beamer(
             key: beamerHome,
             routerDelegate: BeamerDelegate(
-              locationBuilder: (state) => HomeLocation(state),
+              locationBuilder: (routeInformation, _) =>
+                  HomeLocation(routeInformation),
             ),
           ),
         ),
@@ -31,7 +32,8 @@ class Body extends StatelessWidget {
           child: Beamer(
             key: beamerPosts,
             routerDelegate: BeamerDelegate(
-              locationBuilder: (state) => PostLocation(state),
+              locationBuilder: (routeInformation, _) =>
+                  PostLocation(routeInformation),
 
               /// Keep state if we navigate to URI from different
               /// navigator (Beamer), e.g.
@@ -44,7 +46,8 @@ class Body extends StatelessWidget {
           child: Beamer(
             key: beamerSettings,
             routerDelegate: BeamerDelegate(
-              locationBuilder: (state) => SettingsLocation(state),
+              locationBuilder: (routeInformation, _) =>
+                  SettingsLocation(routeInformation),
             ),
           ),
         ),
