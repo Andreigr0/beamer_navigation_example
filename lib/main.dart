@@ -18,7 +18,18 @@ final routerDelegate = BeamerDelegate(
   /// Nested navigation
   // locationBuilder: (state) => RootLocation(state),
   /// Regular navigation
-  locationBuilder: (state) => MainLocation(state),
+  locationBuilder: (state) {
+    final uri = Uri.parse(state.location ?? '/');
+    final mainLocation = MainLocation(state);
+    final canHandle = mainLocation.canHandle(uri);
+
+    logger.i('Uri: $uri, canHandle: $canHandle');
+    // if (!canHandle) {
+    //   return NotFoundLocation(state);
+    // }
+
+    return mainLocation;
+  },
   notFoundPage: const BeamPage(
     key: ValueKey('not found'),
     child: Text('Not found'),

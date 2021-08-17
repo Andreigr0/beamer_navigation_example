@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
       ),
       body: Column(
         children: [
@@ -16,13 +16,13 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               Beamer.of(context, root: true).beamToNamed('/posts/12');
             },
-            child: Text('To posts 12'),
+            child: const Text('To posts 12'),
           ),
           ElevatedButton(
             onPressed: () {
               Beamer.of(context, root: true).beamToNamed('/settings/profile');
             },
-            child: Text('To profile'),
+            child: const Text('To profile'),
           )
         ],
       ),

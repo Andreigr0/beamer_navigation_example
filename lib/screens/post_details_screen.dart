@@ -8,7 +8,7 @@ class PostDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var id = int.parse(postId) + 1;
+    final id = int.parse(postId) + 1;
 
     return Scaffold(
       appBar: AppBar(

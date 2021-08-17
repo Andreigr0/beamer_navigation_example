@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '/screens/posts_list_screen.dart';
 import '/screens/settings_screen.dart';
-import '../../logger.dart';
+import '../logger.dart';
 import '../main.dart';
 import '../screens/home_screen.dart';
 
@@ -13,6 +13,8 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// This is actually the same as [IndexedStack]
+    /// But instead of showing one widget on another it shows them in row
     return Row(
       children: const [
         Expanded(child: HomeScreen()),
@@ -160,7 +162,7 @@ class MainScreenController extends GetxController {
 
     Beamer.of(context).update(
       configuration: RouteInformation(location: location),
-      rebuild: false,
+      // rebuild: false,
     );
 
     if (value == currentIndex) {

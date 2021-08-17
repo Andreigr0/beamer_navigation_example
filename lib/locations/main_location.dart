@@ -1,6 +1,5 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../logger.dart';
 import '../screens/favorites_screen.dart';
@@ -18,16 +17,23 @@ class NotFoundLocation extends BeamLocation<BeamState> {
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
     return [
-      const BeamPage(
-        key: ValueKey('not found'),
-        child: Text('Not found'),
+      BeamPage(
+        key: const ValueKey('not found'),
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () => Beamer.of(context).beamBack(),
+              icon: const Icon(Icons.arrow_back_ios),
+            ),
+          ),
+          body: const Text('Not found'),
+        ),
       ),
     ];
   }
 
   @override
   List<Pattern> get pathBlueprints => ['/404'];
-
 }
 
 class MainLocation extends BeamLocation<BeamState> {
@@ -37,24 +43,20 @@ class MainLocation extends BeamLocation<BeamState> {
 
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
-    if (Get.isRegistered<MainScreenController>()) {
-      final c = Get.find<MainScreenController>();
+    final String rootTitle;
 
-      logger.i('Curr ${c.currentIndex}');
-    }
-
-    final String title2;
     if (state.pathBlueprintSegments.contains('settings')) {
-      logger.i('settings');
-      title2 = 'Settings';
+      rootTitle = 'Settings';
+    } else if (state.pathBlueprintSegments.contains('posts')) {
+      rootTitle = 'Posts';
     } else {
-      title2 = 'Root Screen';
+      rootTitle = 'Home';
     }
 
     return [
       BeamPage(
-        key: ValueKey('MainScreen'),
-        title: title2,
+        key: const ValueKey('MainScreen'),
+        title: rootTitle,
         child: const MainScreen(),
       ),
       if (state.pathBlueprintSegments.contains('favorites'))

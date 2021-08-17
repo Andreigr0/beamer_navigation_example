@@ -10,14 +10,14 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login screen'),
+        title: const Text('Login screen'),
       ),
       body: ElevatedButton(
         onPressed: () {
           isLoggedIn = true;
           Beamer.of(context).beamBack();
         },
-        child: Text('Do Login'),
+        child: const Text('Do Login'),
       ),
     );
   }
