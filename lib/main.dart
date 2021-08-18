@@ -18,9 +18,9 @@ final routerDelegate = BeamerDelegate(
   /// Nested navigation
   // locationBuilder: (state) => RootLocation(state),
   /// Regular navigation
-  locationBuilder: (state) {
-    final uri = Uri.parse(state.location ?? '/');
-    final mainLocation = MainLocation(state);
+  locationBuilder: (routeInformation, _) {
+    final uri = Uri.parse(routeInformation.location ?? '/');
+    final mainLocation = MainLocation(routeInformation);
     final canHandle = mainLocation.canHandle(uri);
 
     logger.i('Uri: $uri, canHandle: $canHandle');
@@ -37,12 +37,12 @@ final routerDelegate = BeamerDelegate(
   notFoundRedirectNamed: '/settings/profile',
   guards: [
     BeamGuard(
-      pathBlueprints: ['/settings/profile/edit'],
+      pathPatterns: ['/settings/profile/edit'],
       beamToNamed: '/login',
       check: (context, location) => isLoggedIn,
     ),
     BeamGuard(
-      pathBlueprints: ['/posts/:id'],
+      pathPatterns: ['/posts/:id'],
       beamToNamed: '/login',
       check: (context, location) {
         logger.d('Check ${location.state}');
@@ -51,7 +51,7 @@ final routerDelegate = BeamerDelegate(
       },
     ),
     BeamGuard(
-      pathBlueprints: ['/login'],
+      pathPatterns: ['/login'],
       check: (context, location) => !isLoggedIn,
     ),
   ],

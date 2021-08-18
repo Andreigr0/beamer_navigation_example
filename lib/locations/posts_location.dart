@@ -16,7 +16,7 @@ class PostLocation extends BeamLocation<BeamState> {
         title: 'Posts List screen',
         child: PostsListScreen(),
       ),
-      if (state.pathBlueprintSegments.contains('posts') &&
+      if (state.pathPatternSegments.contains('posts') &&
           state.pathParameters.containsKey('id'))
         BeamPage(
           key: ValueKey('Post-${state.pathParameters['id']}'),
@@ -27,7 +27,7 @@ class PostLocation extends BeamLocation<BeamState> {
   }
 
   @override
-  List<Pattern> get pathBlueprints {
+  List<Pattern> get pathPatterns {
     return ['/posts', '/posts/:id'];
   }
 }

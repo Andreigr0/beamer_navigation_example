@@ -19,17 +19,17 @@ class RootLocation extends BeamLocation<BeamState> {
         // child: RootScreen(),
         child: RootScreen(),
       ),
-      if (state.pathBlueprintSegments.contains('edit'))
+      if (state.pathPatternSegments.contains('edit'))
         const BeamPage(
           title: 'Profile Edit Screen',
           child: ProfileEditScreen(),
         ),
-      if (state.pathBlueprintSegments.contains('login'))
+      if (state.pathPatternSegments.contains('login'))
         const BeamPage(
           title: 'Login Screen',
           child: LoginScreen(),
         ),
-      if (state.pathBlueprintSegments.contains('favorites'))
+      if (state.pathPatternSegments.contains('favorites'))
         const BeamPage(
           title: 'Favorites Screen',
           child: FavoritesScreen(),
@@ -38,7 +38,7 @@ class RootLocation extends BeamLocation<BeamState> {
   }
 
   @override
-  List<Pattern> get pathBlueprints {
+  List<Pattern> get pathPatterns {
     return [
       '/*',
       '/login',

@@ -14,5 +14,5 @@ class HomeLocation extends BeamLocation<BeamState> {
   }
 
   @override
-  List<Pattern> get pathBlueprints => ['/*'];
+  List<Pattern> get pathPatterns => ['/*'];
 }

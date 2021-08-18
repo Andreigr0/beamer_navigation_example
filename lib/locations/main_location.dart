@@ -33,7 +33,7 @@ class NotFoundLocation extends BeamLocation<BeamState> {
   }
 
   @override
-  List<Pattern> get pathBlueprints => ['/404'];
+  List<Pattern> get pathPatterns => ['/404'];
 }
 
 class MainLocation extends BeamLocation<BeamState> {
@@ -45,9 +45,9 @@ class MainLocation extends BeamLocation<BeamState> {
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
     final String rootTitle;
 
-    if (state.pathBlueprintSegments.contains('settings')) {
+    if (state.pathPatternSegments.contains('settings')) {
       rootTitle = 'Settings';
-    } else if (state.pathBlueprintSegments.contains('posts')) {
+    } else if (state.pathPatternSegments.contains('posts')) {
       rootTitle = 'Posts';
     } else {
       rootTitle = 'Home';
@@ -59,27 +59,27 @@ class MainLocation extends BeamLocation<BeamState> {
         title: rootTitle,
         child: const MainScreen(),
       ),
-      if (state.pathBlueprintSegments.contains('favorites'))
+      if (state.pathPatternSegments.contains('favorites'))
         const BeamPage(
           key: ValueKey('FavoritesScreen'),
           title: 'Favorites Screen',
           child: FavoritesScreen(),
         ),
-      if (state.pathBlueprintSegments.contains('settings')) ...[
-        if (state.pathBlueprintSegments.contains('profile')) ...[
+      if (state.pathPatternSegments.contains('settings')) ...[
+        if (state.pathPatternSegments.contains('profile')) ...[
           const BeamPage(
             key: ValueKey('ProfileScreen'),
             title: 'Profile Screen',
             child: ProfileScreen(),
           ),
-          if (state.pathBlueprintSegments.contains('edit'))
+          if (state.pathPatternSegments.contains('edit'))
             const BeamPage(
               key: ValueKey('ProfileEditScreen'),
               title: 'Profile Edit Screen',
               child: ProfileEditScreen(),
             ),
         ],
-      ] else if (state.pathBlueprintSegments.contains('posts')) ...[
+      ] else if (state.pathPatternSegments.contains('posts')) ...[
         if (state.pathParameters.containsKey('id'))
           BeamPage(
             key: ValueKey('Post-${state.pathParameters['id']}'),
@@ -87,7 +87,7 @@ class MainLocation extends BeamLocation<BeamState> {
             title: 'Post #${state.pathParameters['id']}',
           ),
       ],
-      if (state.pathBlueprintSegments.contains('login'))
+      if (state.pathPatternSegments.contains('login'))
         const BeamPage(
           key: ValueKey('LoginScreen'),
           title: 'Login Screen',
@@ -97,7 +97,7 @@ class MainLocation extends BeamLocation<BeamState> {
   }
 
   @override
-  List<Pattern> get pathBlueprints {
+  List<Pattern> get pathPatterns {
     return [
       '/',
       '/favorites',

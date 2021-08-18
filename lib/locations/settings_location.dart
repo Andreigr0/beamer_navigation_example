@@ -16,7 +16,7 @@ class SettingsLocation extends BeamLocation<BeamState> {
         title: 'Settings Screen',
         child: SettingsScreen(),
       ),
-      if (state.pathBlueprintSegments.contains('profile'))
+      if (state.pathPatternSegments.contains('profile'))
         const BeamPage(
           title: 'Profile Screen',
           child: ProfileScreen(),
@@ -25,7 +25,7 @@ class SettingsLocation extends BeamLocation<BeamState> {
   }
 
   @override
-  List<Pattern> get pathBlueprints {
+  List<Pattern> get pathPatterns {
     return [
       '/settings',
       '/settings/profile',
